@@ -1,9 +1,16 @@
 import React from 'react'
-
+import useForm from './useForm'
+import validateInfo from './validateInfo'
 const FormSignup = () => {
+    const {
+        values,
+        handlerChange,
+        handleSubmit,
+        errors
+    } = useForm(validateInfo)
     return (
         <div className="form-content-right ">
-            <form className="form">
+            <form className="form" onSubmit={handleSubmit}>
                 <h1>Get started with us today! 
                     Create your account by filling out the information belong.
                 </h1>
@@ -17,7 +24,10 @@ const FormSignup = () => {
                         type="text" 
                         className="form-input"
                         placeholder="Enter your username"
+                        value={values.username}
+                        onChange={handlerChange}
                     />
+                    {errors.username && <p>{errors.username}</p>}
                 </div>
                 <div className="form-inputs">
                     <label htmlFor="email" className="form-label">
@@ -29,7 +39,10 @@ const FormSignup = () => {
                         type="email"
                         className="form-input"
                         placeholder = "Enter your email"
+                        value={values.email}
+                        onChange={handlerChange}
                     />
+                    {errors.email && <p>{errors.email}</p>}
                 </div>
                 <div className="form-inputs">
                     <label htmlFor="password" className="form-label">
@@ -41,7 +54,10 @@ const FormSignup = () => {
                         type="password"
                         className="form-input"
                         placeholder = "Enter your password"
+                        value={values.password}
+                        onChange={handlerChange}
                     />
+                    {errors.password && <p>{errors.password}</p>}
                 </div>
                 <div className="form-inputs">
                     <label htmlFor="password2" className="form-label">
@@ -50,10 +66,13 @@ const FormSignup = () => {
                     <input 
                         id="password2"
                         name="password2"
-                        type="password2"
+                        type="password"
                         className="form-input"
                         placeholder = "Enter password again"
+                        value={values.password2}
+                        onChange={handlerChange}
                     />
+                    {errors.password2 && <p>{errors.password2}</p>}
                 </div>
                 <button 
                     className="form-input-btn"
